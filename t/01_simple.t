@@ -18,6 +18,11 @@ subtest 'autobox' => sub {
     [1,2,3]->should_include(3);
 };
 
+subtest 'code' => sub {
+    my $n = 0;
+    (sub { $n++ })->should_change(sub { $n })->by(1);
+};
+
 subtest 'universal' => sub {
     my $obj = MyObj->new();
     $obj->should_be_ok();

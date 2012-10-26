@@ -4,12 +4,17 @@ use warnings;
 use 5.010001;
 our $VERSION = '0.02';
 use Test::Should::Engine;
+use Data::Dumper ();
 
 use parent qw/autobox/;
 
 sub import {
     my $class = shift;
-    $class->SUPER::import( 'DEFAULT' => 'Test::Should::Impl' );
+
+    $class->SUPER::import(
+        'DEFAULT' => 'Test::Should::Impl::Default',
+        'CODE' => 'Test::Should::Impl::Code',
+    );
 }
 
 my $ddf = sub {
@@ -32,24 +37,45 @@ sub _autoload {
 }
 
 package # hide from pause
-    Test::Should::Impl;
-use Carp ();
-use Data::Dumper ();
-use Test::Builder;
+    Test::Should::Impl::Code;
+use parent -norequire, qw/Test::Should::Impl/;
 
-our $AUTOLOAD;
-sub AUTOLOAD {
-    $AUTOLOAD =~ s/.*:://;
-    if ($AUTOLOAD =~ /^should_/) {
-        local $Test::Builder::Level = $Test::Builder::Level + 1;
-        Test::Should::_autoload("$AUTOLOAD", @_);
-    } else {
-        Carp::croak("Unknown method: $AUTOLOAD");
-    }
+sub should_change {
+    my ($modifier, $checker) = @_;
+    my $first = $checker->();
+    $modifier->();
+    my $second = $checker->();
+
+    my $builder = Test::Builder->new();
+    $builder->isnt_eq($first, $second, 'should_change');
+
+    return Test::Should::Term::ShouldChange->new(
+        first => $first,
+        second => $second,
+    );
 }
 
 package # hide from pause
+    Test::Should::Term::ShouldChange;
+
+sub new {
+    my $class = shift;
+    my %args = @_==1 ? %{$_[0]} : @_;
+    bless {%args}, $class;
+}
+
+sub by {
+    my ($self, $by) = @_;
+    my $builder = Test::Builder->new();
+    $builder->is_eq($self->{second}, $by, "changed by $by");
+}
+
+package # hide from pause
+    Test::Should::Impl::Default;
+
+package # hide from pause
     UNIVERSAL;
+
 sub DESTROY { }
 
 our $AUTOLOAD;
