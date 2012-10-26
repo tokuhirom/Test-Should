@@ -95,7 +95,7 @@ __END__
 
 =head1 NAME
 
-Test::Should - Should it be ok??
+Test::Should - Should it be OK??
 
 =head1 SYNOPSIS
 
@@ -118,7 +118,7 @@ Test::Should is yet another testing library to write human readable test case.
 
 And this module generates human readable test case description.
 
-B<This is a development release. I may change the api in the future>
+B<This is a development release. I may change the API in the future>
 
 For more method name details, please look L<Test::Should::Engine>
 
