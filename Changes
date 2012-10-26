@@ -1,4 +1,8 @@
 Revision history for Perl extension Test::Should
 
+0.02
+
+    - hide a package from pause
+
 0.01    Fri Oct 26 08:52:53 2012
     - original version
