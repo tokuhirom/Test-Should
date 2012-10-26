@@ -9,13 +9,14 @@ my $build = Module::Build->new(
     build_requires       => {
         'Test::More' => '0.98',
         'Test::Requires' => 0,
-        'Test::Should::Engine' => 0,
     },
     configure_requires   => { 'Module::Build' => '0.38' },
     requires             => {
         perl => '5.010001',
         'parent'                        => '0',
         'Test::Builder' => 0,
+        autobox => '2.75',
+        'Test::Should::Engine' => 0,
     },
 
     no_index    => { 'directory' => [ 'inc' ] },
