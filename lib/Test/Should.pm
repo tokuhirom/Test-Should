@@ -48,7 +48,8 @@ sub AUTOLOAD {
     }
 }
 
-package UNIVERSAL;
+package # hide from pause
+    UNIVERSAL;
 sub DESTROY { }
 
 our $AUTOLOAD;
