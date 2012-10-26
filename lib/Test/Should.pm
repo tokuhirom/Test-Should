@@ -36,7 +36,6 @@ use Carp ();
 use Data::Dumper ();
 use Test::Builder;
 
-
 our $AUTOLOAD;
 sub AUTOLOAD {
     $AUTOLOAD =~ s/.*:://;
