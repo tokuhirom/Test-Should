@@ -67,15 +67,30 @@ __END__
 
 =head1 NAME
 
-Test::Should - What you should do.
+Test::Should - Should it be ok??
 
 =head1 SYNOPSIS
 
-  use Test::Should;
+    use Test::More;
+    use Test::Should;
+
+    1->should_be_ok;
+    [1,2,3]->should_include(3);
+
+    done_testing;
+
+    # testing result:
+    ok 1 - 1 should_be_ok
+    ok 2 - [1,2,3] should_include 3
+    1..2
 
 =head1 DESCRIPTION
 
-Test::Should is
+Test::Should is yet another testing library to write human readable test case.
+
+And this module generates human readable testing description.
+
+B<This is a development release. I may change the api in the future>
 
 =head1 AUTHOR
 
