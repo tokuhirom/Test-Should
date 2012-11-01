@@ -13,6 +13,7 @@ sub import {
 
     $class->SUPER::import(
         'DEFAULT' => 'Test::Should::Impl::Default',
+        'UNDEF'   => 'Test::Should::Impl::Default',
         'CODE' => 'Test::Should::Impl::Code',
     );
 }

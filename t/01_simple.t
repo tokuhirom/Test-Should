@@ -23,6 +23,10 @@ subtest 'code' => sub {
     (sub { $n++ })->should_change(sub { $n })->by(1);
 };
 
+subtest 'undef' => sub {
+    undef->should_not_be_ok;
+};
+
 subtest 'universal' => sub {
     my $obj = MyObj->new();
     $obj->should_be_ok();
