@@ -1,17 +1,18 @@
-Revision history for Perl extension Test::Should
+Revision history for Perl module Test::Should
 
-0.04
+0.04 2012-11-01
 
     - hooks undefined value.
       undef->should_not_be_ok works.
 
-0.03
+0.03 2012-10-26
 
     - added 'should_change' method
 
-0.02
+0.02 2012-10-25
 
     - hide a package from pause
 
-0.01    Fri Oct 26 08:52:53 2012
+0.01 2012-10-25
+
     - original version
